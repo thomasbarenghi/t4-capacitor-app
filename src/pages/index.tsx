@@ -38,7 +38,7 @@ export default function Home() {
       initialPillsCount,
       isFirstPillTaken,
       finalPillsCount,
-      isLastPillTaken
+      isLastPillTaken,
     );
 
     setResultMessage({
@@ -68,7 +68,7 @@ export default function Home() {
   return (
     <Page>
       <Navbar title="T4 App" />
-      <Block >
+      <Block>
         <BlockTitle>Fecha de inicio</BlockTitle>
         <List>
           <ListInput

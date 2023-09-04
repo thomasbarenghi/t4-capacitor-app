@@ -3,21 +3,20 @@ export function calculateMedicationCompliance(
   initialPillsCount: any,
   isFirstPillTaken: boolean,
   finalPillsCount: any,
-  isLastPillTaken: boolean
+  isLastPillTaken: boolean,
 ) {
   // Convert dates to Date objects
   const startDateObj: any = new Date(startDate);
   const currentDateObj: any = new Date();
 
   // Calculate the number of days elapsed
-//   const elapsedMilliseconds = currentDateObj - startDateObj;
-//   const elapsedDays = elapsedMilliseconds / (1000 * 60 * 60 * 24);
+  //   const elapsedMilliseconds = currentDateObj - startDateObj;
+  //   const elapsedDays = elapsedMilliseconds / (1000 * 60 * 60 * 24);
 
   const millisecondsPerDay = 24 * 60 * 60 * 1000; // 1 día en milisegundos
 
   const elapsedMilliseconds = currentDateObj - startDateObj;
   const elapsedDays = Math.floor(elapsedMilliseconds / millisecondsPerDay);
-
 
   // Calculate the expected pill count
   const expectedPillCount =
@@ -31,7 +30,6 @@ export function calculateMedicationCompliance(
     expectedPillCount,
     actualPillsTaken,
     currentDateObj,
-    
   };
 }
 
@@ -48,5 +46,5 @@ const result = calculateMedicationCompliance(
   initialPillsCount,
   isFirstPillTaken,
   finalPillsCount,
-  isLastPillTaken
+  isLastPillTaken,
 );
