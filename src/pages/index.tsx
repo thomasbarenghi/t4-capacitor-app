@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { calculateMedicationCompliance } from "@/utils/calcPills";
+import { Share } from "@capacitor/share";
 import {
   Page,
   Navbar,
@@ -15,7 +16,7 @@ import {
   Toggle,
 } from "framework7-react";
 
-export default () => {
+export default function Home() {
   const [startDate, setStartDate] = useState(new Date());
   const [initialPillsCount, setInitialPillsCount] = useState(0);
   const [isFirstPillTaken, setIsFirstPillTaken] = useState(false);
@@ -54,10 +55,20 @@ export default () => {
     handleClean();
   };
 
+  const handleShare = async (message: string) => {
+    try {
+      await Share.share({
+        text: message,
+      });
+    } catch (error) {
+      console.log("Error sharing", error);
+    }
+  };
+
   return (
     <Page>
       <Navbar title="T4 App" />
-      <Block>
+      <Block >
         <BlockTitle>Fecha de inicio</BlockTitle>
         <List>
           <ListInput
@@ -142,13 +153,16 @@ export default () => {
               <p className="font-semibold">{resultMessage.m1}</p>
               <p>{resultMessage.m2}</p>
               <p>{resultMessage.m3}</p>
+              <Button fill raised onClick={() => handleShare(resultMessage.m1)}>
+                Compartir
+              </Button>
             </Block>
           </Page>
         </View>
       </Popup>
     </Page>
   );
-};
+}
 
 // import { useState } from "react";
 // import { calculateMedicationCompliance } from "@/utils/calcPills";
